@@ -10,8 +10,8 @@ public:
 
 	int health;
 	int mana;
-	int damage;   //damage this entity can cause
 	string name;
+	int damage;   //damage this entity can cause
 	int evasion;
 	int defence;
 	bool alive;
