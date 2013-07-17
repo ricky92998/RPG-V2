@@ -113,6 +113,8 @@ void main()
 	
 	while(monster->mhealth> 1 && player->health > 1)
 	{
+		cout << "Your health is " << player->health << endl << "Your mana is " << player->mana << endl;
+		cout << "Enemy's health is " << monster->mhealth << endl;
 		cout << "1. Attack" << endl;
 		cin >> selections;
 		if(selections == 1)
@@ -172,6 +174,8 @@ void main()
 
 	while(monster->mhealth> 1 && player->health > 1)
 	{
+		cout << "Your health is " << player->health << endl << "Your mana is " << player->mana << endl;
+		cout << "Enemy's health is " << monster->mhealth << endl;
 		cout << "1. Attack" << endl;
 		cin >> selections;
 		if(selections == 1)
@@ -193,6 +197,80 @@ void main()
 		system("pause");
 		exit(0);
 	}
+	cout << "The town wans't far away, it was giant and there were traders stands everywhere. You walk into town." << endl << endl;
+	cout << "Hello, I am a friend, take these books" << endl << "You have aquired the book of fire!" << endl <<endl;
+	cout << "You have learned the Spell Fireball!" << endl;
+	cout << "You keep walking through the market, and see a wall postered with faces of outlaws." <<endl;
+	cout << "You notice the largest poster in the middle, it is an outlaw that has killed many people." <<endl;
+	cout << "The bounty is......" << endl << "................" << endl << "A place on the knights guard." <<endl;
+	cout << "The knights guard is the most prestigous position for a warrior in all of the kingdom." << endl;
+	cout << "The outlaw is far to the North in the icy mountains." <<endl;
+	cout << "Before you leave, you should buy something from the shop." << endl;
+	cout << "1.Sword Upgrade" << endl;
+	cout << "2.Shield" << endl;
+	cout << "3.Platemail" << endl;
+
+	cin >> selections;
+
+	if(selections == 1)
+	{
+		player->damage += 10;
+	}
+	if(selections == 2)
+	{
+		player->defence += 10;
+	}
+	if(selections == 3)
+	{
+		player->health += 30;
+	}
+
+	cout << "You leave the town, and move toward the mountains of the North." << endl;
+	cout << "It is cold and dry in the North, there are many dangerous-" <<endl;
+	cout << "A mad polar bear appears!" << endl;
+
+	monster->mhealth = 80;
+	monster->mdamage = 20;
+	monster->mdefence = 20;
+	monster->mevasion = 0;
+	monster->mname = "Polar Bear";
+
+	player->maxHealth = player->health;
+	player->maxMana = player->mana;
+
+	while(monster->mhealth> 1 && player->health > 1)
+	{
+		cout << "Your health is " << player->health << endl << "Your mana is " << player->mana << endl;
+		cout << "Enemy's health is " << monster->mhealth << endl;
+		cout << "1. Attack" << endl;
+		cout << "2.Fireball:requires 50 mana"<<endl;
+		cin >> selections;
+		if(selections == 1)
+		{
+			monster->mtakeDamage(player->damage);
+		}
+		if(selections == 2)
+		{
+			monster->takeFireball();
+			player->useFireball();
+		}
+		player->takeDamage(monster->mdamage);
+	}
+	if(monster->mhealth < 1)
+	{
+		cout << "You have killed " << monster->mname << endl;
+		player->health = player->maxHealth;
+		player->mana = player->maxMana;
+		cout << "Your health and mana has been restored" << endl;
+	}
+	if(player->health < 1)
+	{
+		cout << "You have died!" << endl;
+		system("pause");
+		exit(0);
+	}
+
+
 
 
 	system("pause");
