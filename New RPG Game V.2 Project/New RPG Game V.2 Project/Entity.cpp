@@ -12,6 +12,24 @@ Entity::~Entity(void)
 {
 }
 
+void Entity::mtakeDamage(int incomingDamage)
+{
+	long secs = time(NULL);
+	srand(secs);
+	int speed = rand() % 100 + 1;
+	int dmg = incomingDamage - mdefence;
+	if(dmg < 0)
+	{
+		dmg = 0;
+	}
+	if(speed<mevasion)
+	{
+		dmg = 0;
+		cout << "The attack has been evaded." << endl;
+	}
+	mhealth -= dmg;
+	cout << mname << " took " << dmg << " damage." << endl;
+}
 void Entity::takeDamage(int incomingDamage)
 {
 	long secs = time(NULL);
@@ -55,16 +73,4 @@ void Entity::healing()
 	mana = mana - 50;
 	cout << "Your health is " << health << endl;
 	cout << "Your mana is " << mana << endl;
-}
-void Entity::death()
-{
-	if(alive = 0)
-	{
-		cout << "You are dead." << endl;
-		system("pause");
-	}
-}
-bool Entity::isDead()
-{
-	return(health < 1);
 }

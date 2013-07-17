@@ -2,9 +2,9 @@
 #include <iostream>
 #include <string>
 using namespace std;
+
 void main()
 {
-
 	cout << "RPG Hero V.1" << endl << endl << endl;
 	cout << "1.Start Game" <<endl;
 	
@@ -16,10 +16,12 @@ void main()
 		cout << "Your adventure begins here..." <<endl;
 	}
 	cout << "Hello..." <<endl << "..." << endl << "Are you there?" << endl << "Good, you're awake, what is your name?" << endl;
-	string heroName;
-	cin >> heroName;
 
-	cout << "Ahh! You are " << heroName << "." << endl;
+
+	Entity* player = new Entity();
+	cin >> player->name;
+	
+	cout << "Ahh! You are " << player->name << "." << endl;
 	cout << "What type of person are you are you?" <<endl;
 	cout << "1. Orc" << endl;
 	cout << "2. High Elf" << endl;
@@ -31,52 +33,47 @@ void main()
 	cin >> selections;
 	if(selections == 1)
 	{
-		Entity* Orc = new Entity();
-		Orc->health = 150;
-		Orc->damage = 40;
-		Orc->defence = 15;
-		Orc->mana = 0;
-		Orc->evasion = 0;
+		player->health = 150;
+		player->damage = 40;
+		player->defence = 15;
+		player->mana = 0;
+		player->evasion = 0;
 		cout << "I can tell, you probably lift." << endl;
 	}
 	if(selections == 2)
 	{
-		Entity* High_Elf = new Entity();
-		High_Elf->health = 80;
-		High_Elf->damage = 20;
-		High_Elf->defence = 5;
-		High_Elf->mana = 200;
-		High_Elf->evasion = 30;
+		player->health = 80;
+		player->damage = 20;
+		player->defence = 5;
+		player->mana = 200;
+		player->evasion = 30;
 		cout << "High Elves aren't common around here, I hope you can stay safe from the dangers of the Human lands." <<endl;
 	}
 	if(selections == 3)
 	{
-		Entity* Knight = new Entity();
-		Knight->health = 100;
-		Knight->damage = 30;
-		Knight->defence = 20;
-		Knight->mana = 0;
-		Knight->evasion = 0;
+		player->health = 100;
+		player->damage = 30;
+		player->defence = 20;
+		player->mana = 0;
+		player->evasion = 0;
 		cout << "I am honored to see a Knight from the guards watch." << endl;
 	}
 	if(selections == 4)
 	{
-		Entity* Paladin = new Entity();
-		Paladin->health = 100;
-		Paladin->damage = 35;
-		Paladin->defence = 10;
-		Paladin->mana = 100;
-		Paladin->evasion = 10;
+		player->health = 100;
+		player->damage = 35;
+		player->defence = 10;
+		player->mana = 100;
+		player->evasion = 10;
 		cout<< "Oh, we have a Paladin from the silver wastes." << endl;
 	}
 	if(selections == 5)
 	{
-		Entity* Fish_Man = new Entity();
-		Fish_Man->health = 100;
-		Fish_Man->damage = 1;
-		Fish_Man->defence = 0;
-		Fish_Man->mana = 1000;
-		Fish_Man->evasion = 40;
+		player->health = 100;
+		player->damage = 1;
+		player->defence = 0;
+		player->mana = 1000;
+		player->evasion = 40;
 		cout << "I see, you are a Fish Man of the Tin Islands." << endl;
 	}
 
@@ -90,37 +87,113 @@ void main()
 
 	if(selections == 1)
 	{
-		Entity* damage = damage + 10;
+		player->damage += 10;
 	}
 	if(selections == 2)
 	{
-		Entity* defence = defence + 5;
+		player->defence += 5;
 	}
 	if(selections == 3)
 	{
-		Entity* Evasion = Evasion + 15;
+		player->evasion += 15;
+	}
+	cout << "Good choice, run through the back door and into the forest. Don't stop until you see the city of the North- Helmsguard." <<endl <<endl;
+	cout << "The forest is dence with trees and shrubery. Suddenly you see a mutated squirrel attack." <<endl <<endl;
+	
+	Entity* monster = new Entity;
+	monster->mhealth = 70;
+	monster->mdamage = 30;
+	monster->mdefence = 5;
+	monster->mevasion = 15;
+	monster->mmana = 0;
+	monster->mname = "Squirrel";
+
+	player->maxHealth = player->health;
+	player->maxMana = player->mana;
+	
+	while(monster->mhealth> 1 && player->health > 1)
+	{
+		cout << "1. Attack" << endl;
+		cin >> selections;
+		if(selections == 1)
+		{
+			monster->mtakeDamage(player->damage);
+		}
+		player->takeDamage(monster->mdamage);
+	}
+	if(monster->mhealth < 1)
+	{
+		cout << "You have killed " << monster->mname << endl;
+		player->health = player->maxHealth;
+		player->mana = player->maxMana;
+		cout << "Your health and mana has been restored" << endl;
+	}
+	if(player->health < 1)
+	{
+		cout << "You have died!" << endl;
+		system("pause");
+		exit(0);
+	}
+	cout << "LEVEL 2" << endl << "Pick an attribute to increase!" << endl;
+	cout << "1.Health" << endl;
+	cout << "2.Damage" << endl;
+	cout << "3.Defence" << endl;
+	cout << "4.Evasion" << endl;
+
+	cin >> selections;
+	
+	if(selections == 1)
+	{
+		player->health += 20;
+	}
+	if(selections == 2)
+	{
+		player->damage += 15;
+	}
+	if(selections == 3)
+	{
+		player->defence += 5;
+	}
+	if(selections == 4)
+	{
+		player->evasion += 5;
+	}
+	cout << "You continue to walk through the forest." << " You see Helmsguard in the distance." << " You decide to walk on the road so you don't get lost." << endl;
+	cout << "Suddenly you are attacked by a robber!" <<endl;
+
+	monster->mhealth = 100;
+	monster->mname = "Robber";
+	monster->mdamage = 30;
+	monster->mevasion = 15;
+	monster->mdefence = 0;
+	
+	player->maxHealth = player->health;
+	player->maxMana = player->mana;
+
+	while(monster->mhealth> 1 && player->health > 1)
+	{
+		cout << "1. Attack" << endl;
+		cin >> selections;
+		if(selections == 1)
+		{
+			monster->mtakeDamage(player->damage);
+		}
+		player->takeDamage(monster->mdamage);
+	}
+	if(monster->mhealth < 1)
+	{
+		cout << "You have killed " << monster->mname << endl;
+		player->health = player->maxHealth;
+		player->mana = player->maxMana;
+		cout << "Your health and mana has been restored" << endl;
+	}
+	if(player->health < 1)
+	{
+		cout << "You have died!" << endl;
+		system("pause");
+		exit(0);
 	}
 
-	//EXAMPLE OF FIGHT//
-	//cout << "A highway man has came out of the wood and wants to fight." << endl;
-	//cout << "Press 1 to Attack" <<endl;
-	//cout << "Press 2 to Throw Fireball" << endl;
-	//cout << "Press 3 to Heal" << endl;
 
-	//cin >> selections;
-
-	//if(selections == 1)
-	//{
-		//Highwayman->takeDamage(Hero->damage);
-	//}
-	//if(selections == 2)
-	//{
-		//Highwayman->takeFireball();
-		//Hero->useFireball();
-	//}
-	//else
-	//{
-		//Hero->healing();
-	//}
 	system("pause");
 }
