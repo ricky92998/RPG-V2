@@ -15,13 +15,14 @@ void main()
 	if(selections == 1)
 	{
 		cout << "Your adventure begins here..." <<endl;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	cout << "Hello..." <<endl << "..." << endl << "Are you there?" << endl << "Good, you're awake, what is your name?" << endl;
 
 
 	Entity* player = new Entity();
-	cin >> player->name;
+	cin.ignore(1,' ');
+	getline(cin,player->name);
 	
 	cout << "Ahh! You are " << player->name << "." << endl;
 	cout << "What type of person are you are you?" <<endl;
@@ -41,7 +42,7 @@ void main()
 		player->mana = 0;
 		player->evasion = 0;
 		cout << "I can tell, you probably lift." << endl;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	if(selections == 2)
 	{
@@ -51,7 +52,7 @@ void main()
 		player->mana = 200;
 		player->evasion = 30;
 		cout << "High Elves aren't common around here, I hope you can stay safe from the dangers of the Human lands." <<endl;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	if(selections == 3)
 	{
@@ -61,7 +62,7 @@ void main()
 		player->mana = 0;
 		player->evasion = 0;
 		cout << "I am honored to see a Knight from the guards watch." << endl;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	if(selections == 4)
 	{
@@ -71,7 +72,7 @@ void main()
 		player->mana = 100;
 		player->evasion = 10;
 		cout<< "Oh, we have a Paladin from the silver wastes." << endl;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	if(selections == 5)
 	{
@@ -81,7 +82,7 @@ void main()
 		player->mana = 1000;
 		player->evasion = 40;
 		cout << "I see, you are a Fish Man of the Tin Islands." << endl;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 
 
@@ -95,17 +96,17 @@ void main()
 	if(selections == 1)
 	{
 		player->damage += 10;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	if(selections == 2)
 	{
 		player->defence += 5;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	if(selections == 3)
 	{
 		player->evasion += 15;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	cout << "Good choice, run through the back door and into the forest. Don't stop until you see the city of the North- Helmsguard." <<endl <<endl;
 	cout << "The forest is dence with trees and shrubery. Suddenly you see a mutated squirrel attack." <<endl <<endl;
@@ -138,7 +139,7 @@ void main()
 		cout << "You have killed " << monster->mname << endl;
 		player->health = player->maxHealth;
 		player->mana = player->maxMana;
-		cout << string( 100, '\n' );
+		system("cls");
 		cout << "Your health and mana has been restored" << endl;
 	}
 	if(player->health < 1)
@@ -158,22 +159,22 @@ void main()
 	if(selections == 1)
 	{
 		player->health += 20;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	if(selections == 2)
 	{
 		player->damage += 15;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	if(selections == 3)
 	{
 		player->defence += 5;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	if(selections == 4)
 	{
 		player->evasion += 5;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	cout << "You continue to walk through the forest." << " You see Helmsguard in the distance." << " You decide to walk on the road so you don't get lost." << endl;
 	cout << "Suddenly you are attacked by a robber!" <<endl;
@@ -204,7 +205,7 @@ void main()
 		cout << "You have killed " << monster->mname << endl;
 		player->health = player->maxHealth;
 		player->mana = player->maxMana;
-		cout << string( 100, '\n' );
+		system("cls");
 		cout << "Your health and mana has been restored" << endl;
 	}
 	if(player->health < 1)
@@ -231,17 +232,17 @@ void main()
 	if(selections == 1)
 	{
 		player->damage += 10;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	if(selections == 2)
 	{
 		player->defence += 10;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	if(selections == 3)
 	{
 		player->health += 30;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 
 	cout << "You leave the town, and move toward the mountains of the North." << endl;
@@ -270,8 +271,7 @@ void main()
 		}
 		if(selections == 2)
 		{
-			monster->takeFireball();
-			player->useFireball();
+			monster->takeFireball(player);
 		}
 		player->takeDamage(monster->mdamage);
 	}
@@ -280,7 +280,7 @@ void main()
 		cout << "You have killed " << monster->mname << endl;
 		player->health = player->maxHealth;
 		player->mana = player->maxMana;
-		cout << string( 100, '\n' );
+		system("cls");
 		cout << "Your health and mana has been restored" << endl;
 	}
 	if(player->health < 1)
@@ -289,7 +289,7 @@ void main()
 		system("pause");
 		exit(0);
 	}
-cout << "LEVEL 2" << endl << "Pick an attribute to increase!" << endl;
+cout << "LEVEL 3" << endl << "Pick an attribute to increase!" << endl;
 	cout << "1.Health" << endl;
 	cout << "2.Damage" << endl;
 	cout << "3.Defence" << endl;
@@ -300,22 +300,22 @@ cout << "LEVEL 2" << endl << "Pick an attribute to increase!" << endl;
 	if(selections == 1)
 	{
 		player->health += 20;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	if(selections == 2)
 	{
 		player->damage += 15;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	if(selections == 3)
 	{
 		player->defence += 5;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 	if(selections == 4)
 	{
 		player->evasion += 5;
-		cout << string( 100, '\n' );
+		system("cls");
 	}
 
 	cout << "You learned healing" << endl << endl;
@@ -346,8 +346,7 @@ cout << "LEVEL 2" << endl << "Pick an attribute to increase!" << endl;
 		}
 		if(selections == 2)
 		{
-			monster->takeFireball();
-			player->useFireball();
+			monster->takeFireball(player);
 		}
 		if (selections == 3)
 		{
@@ -360,7 +359,7 @@ cout << "LEVEL 2" << endl << "Pick an attribute to increase!" << endl;
 		cout << "You have killed " << monster->mname << endl;
 		player->health = player->maxHealth;
 		player->mana = player->maxMana;
-		cout << string( 100, '\n' );
+		system("cls");
 		cout << "Your health and mana has been restored" << endl;
 	}
 	if(player->health < 1)
@@ -397,8 +396,7 @@ cout << "LEVEL 2" << endl << "Pick an attribute to increase!" << endl;
 		}
 		if(selections == 2)
 		{
-			monster->takeFireball();
-			player->useFireball();
+			monster->takeFireball(player);
 		}
 		if (selections == 3)
 		{
@@ -411,7 +409,7 @@ cout << "LEVEL 2" << endl << "Pick an attribute to increase!" << endl;
 		cout << "You have almost killed " << monster->mname << endl;
 		player->health = player->maxHealth;
 		player->mana = player->maxMana;
-		cout << string( 100, '\n' );
+		system("cls");
 		cout << "Your health and mana has been restored" << endl;
 	}
 	if(player->health < 1)

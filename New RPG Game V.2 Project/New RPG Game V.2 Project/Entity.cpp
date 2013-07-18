@@ -49,14 +49,15 @@ void Entity::takeDamage(int incomingDamage)
 	cout << name << " took " << dmg << " damage." << endl;
 }
 
-void Entity::takeFireball()
+void Entity::takeFireball(Entity* player)
 {
-	if(mana > 49)
+	if(player->mana > 49)
 	{
-		mana = mana - 50;
+		player->mana = player->mana - 50;
 		mhealth=mhealth-50;
 		cout << "Enemy has " << mhealth << " health." <<endl;
-		cout << "You have " << mana << " mana." << endl;
+		cout << "You have " << player->mana << " mana." << endl;
+		system("pause");
 	}
 	else
 	{
