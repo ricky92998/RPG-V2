@@ -269,9 +269,76 @@ void main()
 		system("pause");
 		exit(0);
 	}
+cout << "LEVEL 2" << endl << "Pick an attribute to increase!" << endl;
+	cout << "1.Health" << endl;
+	cout << "2.Damage" << endl;
+	cout << "3.Defence" << endl;
+	cout << "4.Evasion" << endl << endl;
 
+	cin >> selections;
+	
+	if(selections == 1)
+	{
+		player->health += 20;
+	}
+	if(selections == 2)
+	{
+		player->damage += 15;
+	}
+	if(selections == 3)
+	{
+		player->defence += 5;
+	}
+	if(selections == 4)
+	{
+		player->evasion += 5;
+	}
 
+	cout << "You learned healing" << endl << endl;
 
+	cout << "You keep walking to the North in search of the unnamed man." <<endl <<endl;
+	cout << "You are ambushed by a Wizard." << endl;
+	
+	monster->mhealth = 300;
+	monster->mdefence = 0;
+	monster->mdamage = 30;
+	monster->mname = "Wizard";
+	monster->mevasion = 10;
+
+	player->maxHealth = player->health;
+	player->maxMana = player->mana;
+
+	while(monster->mhealth> 1 && player->health > 1)
+	{
+		cout << "Your health is " << player->health << endl << "Your mana is " << player->mana << endl;
+		cout << "Enemy's health is " << monster->mhealth << endl;
+		cout << "1. Attack" << endl;
+		cout << "2.Fireball:requires 50 mana"<<endl;
+		cin >> selections;
+		if(selections == 1)
+		{
+			monster->mtakeDamage(player->damage);
+		}
+		if(selections == 2)
+		{
+			monster->takeFireball();
+			player->useFireball();
+		}
+		player->takeDamage(monster->mdamage);
+	}
+	if(monster->mhealth < 1)
+	{
+		cout << "You have killed " << monster->mname << endl;
+		player->health = player->maxHealth;
+		player->mana = player->maxMana;
+		cout << "Your health and mana has been restored" << endl;
+	}
+	if(player->health < 1)
+	{
+		cout << "You have died!" << endl;
+		system("pause");
+		exit(0);
+	}
 
 	system("pause");
 }
