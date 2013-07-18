@@ -51,24 +51,17 @@ void Entity::takeDamage(int incomingDamage)
 
 void Entity::takeFireball()
 {
-	if (mana < 50)
+	if(mana > 49)
+	{
+		mana = mana - 50;
+		mhealth=mhealth-50;
+		cout << "Enemy has " << mhealth << " health." <<endl;
+		cout << "You have " << mana << " mana." << endl;
+	}
+	else
 	{
 		cout << "You don't have enough mana... scrub" <<endl;
 	}
-	if(mana > 49)
-	{
-		mhealth=mhealth-50;
-		cout << "Enemy has " << mhealth << " health." <<endl;
-	}
-}
-void Entity::useFireball()
-{
-	if(mana < 50)
-	{
-		system("pause");
-	}
-	mana = mana - 50;
-	cout << "You have " << mana << " mana." << endl;
 }
 void Entity::healing()
 {
